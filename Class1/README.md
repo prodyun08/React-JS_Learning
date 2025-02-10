@@ -11,7 +11,7 @@ React ব্যবহার করতে হলে আপনার system এ [N
 
 ### React Directly in HTML
 খুব দ্রুত পদ্ধতিতে যদি আপনি React শিখতে চান তাহলে আপনি HTML এর মধেই React CDN এর মাধ্যমে শিখতে পারেন। 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
