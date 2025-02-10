@@ -11,6 +11,16 @@
 - **Unidirectional Data Flow** – একমুখী ডাটা প্রবাহ, যা অ্যাপ্লিকেশন ম্যানেজ করা সহজ করে।
 - **React Hooks** – Functional components এর জন্য built-in hooks ব্যবহার করা যায়।
 
+### How Does React Work?
+React creates a **VIRTUAL DOM** in memory.
+
+Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM.
+
+React only changes what needs to be changed!
+
+React finds out what changes have been made, and changes only what needs to be changed.
+
+আপনি এই টিউটোরিয়ালের বাকি অংশে শিখবেন কিভাবে React এটি করে।
 ### Installation
 React JS ইন্সটল করতে **Node.js** ইন্সটল থাকতে হবে।
 
