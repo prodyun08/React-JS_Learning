@@ -13,37 +13,60 @@ React ব্যবহার করতে হলে আপনার system এ [N
 খুব দ্রুত পদ্ধতিতে যদি আপনি React শিখতে চান তাহলে আপনি HTML এর মধেই React CDN এর মাধ্যমে শিখতে পারেন। 
 ```html
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directly React in HTML Example</title>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="root"></div>
     <script type="text/babel">
-        function App() {
-            return <h1>Hello, JSX with Babel!</h1>;
-        }
-        ReactDOM.render(<App />, document.getElementById('root'));
+    
+      function MyApp() {
+        return <h1>Hello, world!</h1>;
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
     </script>
-</body>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
 </html>
 ```
 এই code এর মধ্যে 3টে script line আছে এদের কাজ 
 ### first line
-```<script src="https://unpkg.com/react@17/umd/react.development.js"></script>``` 
+```js
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+``` 
 এই script দিয়ে HTML এর সাথে CDN used করে react js কে link করা হচ্ছে। 
 
 ### second line 
-```<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>``` 
+```js
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+``` 
 react-dom এটির কাজ হল code টিকে browser/web এ run করা। 
 
 ### third line 
-```<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>```
+```js
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+```
+
 এই code এ মাধ্যমে বলা হচ্ছে The script is used in HTML code to enable writing modern JavaScript (JSX, ES6+) directly in the browser without the need for a build tool like Webpack or Babel CLI. 
 
 শুধুমাত্র testing purpose এর ক্ষেত্রেই এই পধতি ব্যাবহার করা যেতে পারে। কিন্তু যদি আপনি react js এর production ব্যবহার করতে চান তাহলে আপনাকে পুরো React এর environment setup করতে হবে। 
@@ -51,7 +74,7 @@ react-dom এটির কাজ হল code টিকে browser/web এ run �
 
 # Setting up a React Environment
 
-যদি আপনার system এ npx & [Nodejs](https://nodejs.org/en) installed থাকে তাহলে আপনি ```create-react-app``` এর মাধ্যমে react application create করতে পারেন। 
+যদি আপনার system এ [npx](https://www.npmjs.com/package/npx) & [Nodejs](https://nodejs.org/en) installed থাকে তাহলে আপনি ```create-react-app``` এর মাধ্যমে react application create করতে পারেন। 
 
 ```shell
 npx create-react-app my-react-app
@@ -89,3 +112,10 @@ cd my-react-app
 ```md
 npm install
 ```
+application run করার জন্য 
+```md
+npm start
+```
+একটি popup দিয়ে default browser open হবে & localhost:3000 location আপনার applicaiton টি run হবে। 
+
+#### The most Important notice is if you Instead, use a build tool like Vite, Webpack, or Parcel to compile the code before deployment.
