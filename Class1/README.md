@@ -119,3 +119,7 @@ npm start
 একটি popup দিয়ে default browser open হবে & localhost:3000 location আপনার applicaiton টি run হবে। 
 
 #### The most Important notice is if you Instead, use a build tool like Vite, Webpack, or Parcel to compile the code before deployment.
+Installation process :
+[Vite](https://vite.dev/guide/#scaffolding-your-first-vite-project)
+[Webpack](https://webpack.js.org/guides/installation/#local-installation)
+[Parcel](https://parceljs.org/recipes/react/#getting-started)
