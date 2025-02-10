@@ -17,7 +17,7 @@ React ব্যবহার করতে হলে আপনার system এ [N
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Babel Example</title>
+    <title>Directly React in HTML Example</title>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -32,4 +32,60 @@ React ব্যবহার করতে হলে আপনার system এ [N
     </script>
 </body>
 </html>
+```
+এই code এর মধ্যে 3টে script line আছে এদের কাজ 
+### first line
+```<script src="https://unpkg.com/react@17/umd/react.development.js"></script>``` 
+এই script দিয়ে HTML এর সাথে CDN used করে react js কে link করা হচ্ছে। 
+
+### second line 
+```<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>``` 
+react-dom এটির কাজ হল code টিকে browser/web এ run করা। 
+
+### third line 
+```<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>```
+এই code এ মাধ্যমে বলা হচ্ছে The script is used in HTML code to enable writing modern JavaScript (JSX, ES6+) directly in the browser without the need for a build tool like Webpack or Babel CLI. 
+
+শুধুমাত্র testing purpose এর ক্ষেত্রেই এই পধতি ব্যাবহার করা যেতে পারে। কিন্তু যদি আপনি react js এর production ব্যবহার করতে চান তাহলে আপনাকে পুরো React এর environment setup করতে হবে। 
+
+
+# Setting up a React Environment
+
+যদি আপনার system এ npx & [Nodejs](https://nodejs.org/en) installed থাকে তাহলে আপনি ```create-react-app``` এর মাধ্যমে react application create করতে পারেন। 
+
+```shell
+npx create-react-app my-react-app
+```
+আপনি দেখতে পাবেন আপনার location এ my-react-app নামে একটি folder create হবে। 
+```md
+# Project Structure
+
+- 📂 my-react-app/
+  |- 📂 node_modules/ 
+  |- 📂 src/
+  |  |- 📄 App.css          # Styles for the App component
+  |  |- 📄 App.js           # Main App component
+  |  |- 📄 App.test.js      # Test file for the App component
+  |  |- 📄 index.css        # Global CSS styles
+  |  |- 📄 index.js         # Entry point of the React app
+  |  |- 📄 logo.svg         # Default React logo
+  |  |- 📄 reportWebVitals.js # Performance monitoring
+  |  |- 📄 setupTests.js    # Test setup
+  |- 📂 public/
+  |  |- 📄 index.html
+  |  |- 📄 favicon.ico
+  |  |- 📄 manifest.json
+  |  |- 📄 package.json
+  |- 📄 .gitignore           # Files to ignore in Git
+  |- 📄 package.json         # Project dependencies and scripts
+  |- 📄 package-lock.json    # Dependency lock file
+```
+দেখবেন আপনার ওই file location a এই রকম related file show করবে। জানবেন আপনার file installation procress complete হয়েছে। next আপনি
+```md
+cd my-react-app
+```
+করে আপনার folder এর মধ্যে যাবেন আর run করবেন।
+
+```md
+npm install
 ```
