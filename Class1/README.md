@@ -123,3 +123,6 @@ Installation process :
 [Vite](https://vite.dev/guide/#scaffolding-your-first-vite-project)
 [Webpack](https://webpack.js.org/guides/installation/#local-installation)
 [Parcel](https://parceljs.org/recipes/react/#getting-started)
+
+
+very important notice for react 18 upgrade just click [here](https://www.w3schools.com/REACT/react_upgrade.asp)
