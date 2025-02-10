@@ -8,7 +8,7 @@ ECMAScript was created to standardize JavaScript, and ES6 is the 6th version of 
 ### Why Should I Learn ES6?
 React uses ES6, and you should be familiar with some of the new features like:
 
-- Classes
+- [Classes](Class2/Classes.md)
 - Arrow Functions
 - Variables (let, const, var)
 - Array Methods like .map()
