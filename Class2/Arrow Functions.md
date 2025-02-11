@@ -46,3 +46,5 @@ document.getElementById("demo").innerHTML = hello("World"); // Output: Hello Wor
 const multiply = (a, b, c) => a * b * c;
 console.log(multiply(2, 3, 4)); // Output: 24
 ```
+
+# What About this?
