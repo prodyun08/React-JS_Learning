@@ -21,4 +21,28 @@ students = () => {
 students = () => "All Students";
 ```
 আপনি যদি <kbd>students() </kbd> function টি call করেন তাহলে <kbd>All Students</kbd> print হবে। 
+
 আপনার কাছে যদি প্যারামিটার থাকে আপনি প্যারেন্টেসের মধ্যে দিয়ে প্যারামিটার পাস করাতে পারেন। কিন্তু যদি আপনার কাছে একটি মাত্র প্যারামিটার থাকে তাহলে প্যারেন্টেসিসটা স্কিপ করে আপনি লিখতে পারেন। 
+
+### Example 
+- Arrow Function With Parameters:
+```js
+<p id="demo"></p>
+<script>
+hello = (val) => "Hello " + val;
+document.getElementById("demo").innerHTML = hello("World"); // Output: Hello World
+</script>
+```
+- Arrow Function Without Parentheses:
+```js
+<p id="demo"></p>
+<script>
+hello = (val) => "Hello " + val;
+
+document.getElementById("demo").innerHTML = hello("World"); // Output: Hello World
+```
+- Arrow Function With Multiple Parameters:
+```js
+const multiply = (a, b, c) => a * b * c;
+console.log(multiply(2, 3, 4)); // Output: 24
+```
