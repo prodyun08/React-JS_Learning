@@ -48,3 +48,5 @@ console.log(multiply(2, 3, 4)); // Output: 24
 ```
 
 # What About this?
+arrow functions এর তুলনায় this function একটু আলাদা ভাবে ব্যাবহার হয়। 
+
