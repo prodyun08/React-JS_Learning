@@ -48,5 +48,16 @@ console.log(multiply(2, 3, 4)); // Output: 24
 ```
 
 # What About this?
-arrow functions এর তুলনায় this function একটু আলাদা ভাবে ব্যাবহার হয়। 
+arrow functions এর তুলনায় this function একটু আলাদা ভাবে ব্যাবহার হয়। বলা যেতে পারে - 
 
+- In regular functions the this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
+
+- With arrow functions, the this keyword always represents the object that defined the arrow function.
+
+- Let us take a look at two examples to understand the difference.
+
+- Both examples call a method twice, first when the page loads, and once again when the user clicks a button.
+
+- The first example uses a regular function, and the second example uses an arrow function.
+
+- The result shows that the first example returns two different objects (window and button), and the second example returns the Header object twice.
