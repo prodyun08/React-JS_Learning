@@ -61,3 +61,33 @@ arrow functions এর তুলনায় <kbd>this</kbd> function একট�
 - The first example uses a regular function, and the second example uses an arrow function.
 
 - The result shows that the first example returns two different objects (window and button), and the second example returns the Header object twice.
+
+
+
+#### Example
+- With a regular function, this represents the object that called the function:
+```js
+const Header = {
+  title: "My Website",
+  showTitle: function() {
+    console.log(this.title); // 'this' refers to Header
+  }
+};
+
+Header.showTitle(); // Output: "My Website"
+```
+- With an arrow function, this represents the Header object no matter who called the function:
+
+
+```js
+const Header = {
+  title: "My Website",
+  showTitle: function() {
+    setTimeout(() => {
+      console.log(this.title); // 'this' refers to Header
+    }, 1000);
+  }
+};
+
+Header.showTitle(); // Output after 1 second: "My Website"
+```
