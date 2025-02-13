@@ -13,6 +13,6 @@ React uses ES6, and you should be familiar with some of the new features like:
 - [Variables (let, const, var)](Variables.md)
 - [Array Methods like .map()](Array.md)
 - [Destructuring](Destructing%20Arrays.md)
+- [Spread Operator](Spread%20Operator.md)
 - [Modules](Modules.md)
 - [Ternary Operator](Ternary%20Operator.md)
-- [Spread Operator](Spread%20Operator.md)
