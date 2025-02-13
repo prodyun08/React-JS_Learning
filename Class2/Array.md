@@ -2,7 +2,7 @@
 
 There are many JavaScript array methods.
 
-🔹 1. `map()` → Transform Array Elements
+- 🔹 1. `map()` → Transform Array Elements
 Used to iterate over an array and return a new array.
 ```js
 const names = ["John", "Alice", "Bob"];
@@ -22,7 +22,7 @@ Use Case:
 
 
 
-🔹 2. filter() → Remove Elements Based on Condition
+- 🔹 2. `filter()` → Remove Elements Based on Condition
 Creates a new array with elements that pass a test.
 ```js
 const numbers = [10, 15, 20, 25, 30];
@@ -34,7 +34,7 @@ Use Case:
 ✅ Removing unwanted items (e.g., filtering completed tasks in a Todo App).
 
 
-🔹 3. find() → Get First Matching Element
+- 🔹 3. `find()` → Get First Matching Element
 Returns the first element that satisfies a condition.
 ```js
 const users = [
@@ -50,7 +50,7 @@ Use Case:
 
 
 
-🔹 4. some() → Check If Any Element Matches Condition
+- 🔹 4. `some()` → Check If Any Element Matches Condition
 Returns true if at least one element matches the condition.
 ```js
 const users = [
@@ -65,7 +65,7 @@ Use Case:
 ✅ Checking if an item exists in an array.
 
 
-🔹 5. every() → Check If All Elements Match Condition
+- 🔹 5. `every()` → Check If All Elements Match Condition
 Returns true only if all elements satisfy a condition.
 ```js
 const users = [
@@ -81,7 +81,7 @@ Use Case:
 
 
 
-🔹 6. reduce() → Accumulate Values
+- 🔹 6. `reduce()` → Accumulate Values
 Reduces an array to a single value.
 ```js
 const cart = [
@@ -96,7 +96,7 @@ Use Case:
 ✅ Summing values (e.g., total price in a shopping cart).
 
 
-🔹 7. sort() → Sort an Array
+- 🔹 7. `sort()` → Sort an Array
 Sorts an array in place.
 ```js
 const numbers = [5, 2, 8, 1, 3];
@@ -108,7 +108,7 @@ Use Case:
 
 
 
-🔹 8. concat() → Merge Arrays
+- 🔹 8. `concat()` → Merge Arrays
 Combines two or more arrays.
 ```js
 const arr1 = [1, 2, 3];
@@ -122,7 +122,7 @@ Use Case:
 
 
 
-🔹 9. splice() → Modify an Array (Add/Remove)
+- 🔹 9. `splice()` → Modify an Array (Add/Remove)
 Modifies the original array.
 ```js
 const items = ["Apple", "Banana", "Cherry"];
@@ -134,7 +134,7 @@ Use Case:
 
 
 
-🔹 10. slice() → Extract Part of an Array
+- 🔹 10. `slice()` → Extract Part of an Array
 Returns a new array without modifying the original.
 ```js
 const fruits = ["Apple", "Banana", "Cherry", "Date"];
