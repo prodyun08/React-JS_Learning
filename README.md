@@ -53,3 +53,30 @@ export default App;
 
 ### Conclusion
 React JS হল **একটি জনপ্রিয় JavaScript লাইব্রেরি** যা **Frontend Development** কে সহজ ও দ্রুততর করে। এটি বড় স্কেলের **Web Apps** তৈরি করতে খুবই কার্যকর।
+
+### Install Tailwind CSS
+```js
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### Configure your template paths 
+
+```md
+# tailwind.config.js
+
+content:[
+  "./index.html",
+  "./src/**/*.{js,ts,jsx,tsx}",
+],
+```
+
+### Add the Tailwind directives to your CSS
+Add the '@tailwind' directives for each of Tailwind's layers to your './src/index.css' file.
+```js
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+### Start your build process
+run build process `npm run dev`
