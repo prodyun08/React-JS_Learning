@@ -108,3 +108,58 @@ displayStudent(student);
 // Name: Prodyun Biswas, Age: 21
 // Skills: AutoCAD, Revit, STAAD Pro
 ```
+
+
+Here is the new way of using an object inside a function:
+```js
+<p id="demo"></p>
+  
+<script>
+const vehicleOne = {
+  brand: 'Ford',
+  model: 'Mustang',
+  type: 'car',
+  year: 2021, 
+  color: 'red'
+}
+
+myVehicle(vehicleOne);
+
+function myVehicle({type, color, brand, model}) {
+  const message = 'My ' + type + ' is a ' + color + ' ' + brand + ' ' + model + '.';
+
+  document.getElementById("demo").innerHTML = message;
+}
+</script>
+```
+
+- Notice that the object properties do not have to be declared in a specific order.
+
+We can even destructure deeply nested objects by referencing the nested object then using a colon and curly braces to again destructure the items needed from the nested object:
+
+```js
+<p id="demo"></p>
+  
+<script>
+const vehicleOne = {
+  brand: 'Ford',
+  model: 'Mustang',
+  type: 'car',
+  year: 2021, 
+  color: 'red',
+  registration: {
+    city: 'Houston',
+    state: 'Texas',
+    country: 'USA'
+  }
+}
+
+myVehicle(vehicleOne)
+
+function myVehicle({ model, registration: { state } }) {
+  const message = 'My ' + model + ' is registered in ' + state + '.';
+
+  document.getElementById("demo").innerHTML = message;
+}
+</script>
+```
