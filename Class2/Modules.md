@@ -14,9 +14,9 @@
 - There are two types of exports: Named and Default.
 
 # Named Exports
-You can create named exports two ways. In-line individually, or all at once at the bottom.
+- You can create named exports two ways. In-line individually, or all at once at the bottom.
 
-Example
+#### Example
 In-line individually: `person.js`
 ```js
 export const name = "Jesse"
@@ -48,9 +48,11 @@ export default message;
 # Import
 - You can import modules into a file in two ways, based on if they are named exports or default exports.
 - Named exports must be destructured using curly braces. Default exports do not.
-Import named exports from the file person.js:
+
+
+ Import named exports from the file `person.js`:
 ```js
-import { name, age } from `"./person.js";`
+import { name, age } from "./person.js";
 ```
 
 Import a default export from the file `message.js`:
