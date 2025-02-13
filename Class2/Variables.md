@@ -27,7 +27,7 @@ console.log(age); // Output : 25
 
 #### 3.const
 ```js
-const var name = "John";  // Variable declaration
-console.log(name);
+const PI = 3.1416;  // Declaring a constant
+console.log(PI);  // Output: 3.1416
 ```
 
