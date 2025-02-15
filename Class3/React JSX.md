@@ -36,3 +36,144 @@ root.render(myElement);
 ```
 
 
+### Expressions in JSX
+With JSX you can write expressions inside curly braces { }.
+
+The expression can be a React variable, or property, or any other valid JavaScript expression. JSX will execute the expression and return the result:
+Execute the expression `5 + 5`:
+```jsx
+const myElement = <h1>React is {5 + 5} times better with JSX</h1>;
+```
+
+### Inserting a Large Block of HTML
+To write HTML on multiple lines, put the HTML inside parentheses:
+
+- Create a list with three list items:
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = (
+  <ul>
+    <li>Apples</li>
+    <li>Bananas</li>
+    <li>Cherries</li>
+  </ul>
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+
+## One Top Level Element
+The HTML code must be wrapped in ONE top level element.
+
+So if you like to write two paragraphs, you must put them inside a parent element, like a div element.
+- Wrap two paragraphs inside one DIV element:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-do/client';
+
+const myElement = (
+  <div>
+    <h1>I am a Header.</h1>
+    <h1>I am a Header too.</h1>
+  </div>
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+**JSX will throw an error if the HTML is not correct, or if the HTML misses a parent element.**
+Alternatively, you can use a "fragment" to wrap multiple lines. This will prevent unnecessarily adding extra nodes to the DOM.
+
+A fragment looks like an empty HTML tag: `<></>`.
+- Wrap two paragraphs inside a fragment:
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = (
+    <>
+      <p>I am a paragraph.</p>
+      <p>I am a paragraph too.</p>
+    </>
+  );
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+### Elements Must be Closed
+JSX follows XML rules, and therefore HTML elements must be properly closed.
+
+- Close empty elements with />
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = <input type="text" />;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+*JSX will throw an error if the HTML is not properly closed.*
+## Attribute class = className
+The `class` attribute is a much used attribute in HTML, but since JSX is rendered as JavaScript, and the class keyword is a reserved word in JavaScript, you are not allowed to use it in JSX.
+
+*Use attribute className instead.*
+JSX solved this by using `className` instead. When JSX is rendered, it translates `className` attributes into `class` attributes.
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const myElement = <h1 className="myclass">Hello World</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+
+### Conditions - if statements
+React supports if statements, but not inside JSX.
+
+To be able to use conditional statements in JSX, you should put the if statements outside of the JSX, or you could use a ternary expression instead:
+
+Option 1:
+Write if statements outside of the JSX code:
+*Write "Hello" if x is less than 10, otherwise "Goodbye":* 
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const x = 5;
+let text = "Goodbye";
+if (x < 10) {
+  text = "Hello";
+}
+
+const myElement = <h1>{text}</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+
+Option 2:
+Use ternary expressions instead:
+
+*Write "Hello" if x is less than 10, otherwise "Goodbye":*
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const x = 5;
+
+const myElement = <h1>{(x) < 10 ? "Hello" : "Goodbye"}</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(myElement);
+```
+*Note that in order to embed a JavaScript expression inside JSX, the JavaScript must be wrapped with curly braces, `{}`.*
+
+
+
+
