@@ -175,5 +175,42 @@ root.render(myElement);
 *Note that in order to embed a JavaScript expression inside JSX, the JavaScript must be wrapped with curly braces, `{}`.*
 
 
+# Writing markup with JSX 
+The markup syntax you’ve seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the tools we recommend for local development support JSX out of the box.
+
+JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can’t return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+
+```diff
+function AboutPage() {
+  return (
++    <>
+       <h1>About</h1>
+       <p>Hello there.<br />How do you do?</p>
++    </>
+  );
+}
+```
+# Displaying data 
+JSX lets you put markup into JavaScript. Curly braces let you “escape back” into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+```js
+return (
+  <h1>
+    {user.name} 
+  </h1>
+);
+```
+
+You can also “escape into JavaScript” from JSX attributes, but you have to use curly braces instead of quotes. For example, `className="avatar"` passes the "avatar" string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+
+```js
+return (
+  <img
+    className="avatar"
+    src={user.imageUrl}
+  />
+);
+```
 
 
+
+## More Imformation Read [React Official Docs](https://react.dev/learn) 👾🐱‍🏍
