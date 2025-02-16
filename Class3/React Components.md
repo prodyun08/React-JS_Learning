@@ -99,4 +99,71 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Car />);
 ```
 
-## Props
+## [Props](https://react.dev/learn/passing-props-to-a-component)
+Components can be passed as props, which stands for properties.
+
+Props are like function arguments, and you send them into the component as attributes.
+
+You will learn more about props in the next chapter.
+*Use an attribute to pass a color to the Car component, and use it in the render() function:*
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function Car(props) {
+  return <h2>I am a {props.color} Car!</h2>;
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Car color="red"/>);
+```
+
+## Components in Components
+- We can refer to components inside other components:
+
+*Use the Car component inside the Garage component:*
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function Car() {
+  return <h2>I am a Car!</h2>;
+}
+
+function Garage() {
+  return (
+    <>
+	    <h1>Who lives in my Garage?</h1>
+	    <Car />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Garage />);
+```
+
+## Components in Files
+React is all about re-using code, and it is recommended to split your components into separate files.
+
+To do that, create a new file with a .js file extension and put the code inside it:
+**Note that the filename must start with an uppercase character.**
+*This is the new file, we named it "Car.js":*
+```jsx
+function Car() {
+  return <h2>Hi, I am a Car!</h2>;
+}
+
+export default Car;
+```
+To be able to use the Car component, you have to import the file in your application.
+
+*Now we import the "Car.js" file in the application, and we can use the Car component as if it was created here.*
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Car from './Car.js';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Car />);
+```
