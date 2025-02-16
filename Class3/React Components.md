@@ -50,3 +50,53 @@ export default function MyApp() {
 ```
 The `export` `default` keywords specify the main component in the file. If you’re not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
 
+
+
+### Create Your First Component
+When creating a React component, the component's name MUST start with an upper case letter.
+
+#### Class Component
+A class component must include the `extends React.Component` statement. This statement creates an inheritance to React.Component, and gives your component access to React.Component's functions.
+
+The component also requires a `render()` method, this method returns HTML.
+
+*Create a Class component called Car*
+```jsx
+class Car extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
+}
+```
+
+
+#### Function Component
+Here is the same example as above, but created using a Function component instead.
+
+A Function component also returns HTML, and behaves much the same way as a Class component, but Function components can be written using much less code, are easier to understand, and will be preferred in this tutorial.
+
+*Create a Function component called Car*
+
+```jsx
+function Car() {
+  return <h2>Hi, I am a Car!</h2>;
+}
+```
+#### Rendering a Component
+Now your React application has a component called Car, which returns an `<h2>` element.
+
+To use this component in your application, use similar syntax as normal HTML: `<Car />`
+*Display the Car component in the "root" element:*
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function Car() {
+  return <h2>Hi, I am a Car!</h2>;
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Car />);
+```
+
+## Props
