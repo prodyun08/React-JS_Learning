@@ -589,3 +589,149 @@ root.render(<Car />);
 
 ⚠️ **Tip:**  
 👉 **এই method সাধারণত complex UI update tracking বা animation synchronizing-এর জন্য ব্যবহৃত হয়।** 🚀
+--- 
+
+## componentDidUpdate
+
+📌 **componentDidUpdate()** হল **React lifecycle method**, যা **component update হওয়ার পর সাথে সাথে execute হয়।**  
+
+✅ **এই method-এর বৈশিষ্ট্য:**  
+1️⃣ **Component update হওয়ার পর DOM-এ নতুন পরিবর্তন দেখায়।**  
+2️⃣ **Update হওয়ার আগের props এবং state-এর মান পেতে পারে।**  
+3️⃣ **এই method-এর মাধ্যমে API calls, state change, বা UI update করা যায়।**  
+4️⃣ **এটি শুধুমাত্র update phase-এর সময় execute হয়, mounting-এর সময় নয়।**  
+
+---
+
+### **🚀 Example: Using componentDidUpdate() Method**
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { favoriteColor: "red" };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ favoriteColor: "yellow" });
+    }, 1000);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+      "Previous color: " + prevState.favoriteColor;
+    document.getElementById("div2").innerHTML =
+      "Updated color: " + this.state.favoriteColor;
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Color is {this.state.favoriteColor}</h1>
+        <div id="div1"></div>
+        <div id="div2"></div>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Car />);
+```
+
+✅ **প্রথমে "red" দেখাবে কারণ initial state সেট করা আছে।**  
+✅ **১ সেকেন্ড পর setState() দ্বারা color "yellow" হবে।**  
+✅ **componentDidUpdate() update হওয়ার আগের color এবং নতুন color দেখাবে।**  
+
+⚠️ **Tip:**  
+👉 **এই method asynchronous operations (API calls, database fetch) করতে ব্যবহৃত হয়। তবে setState() এখানে ব্যবহার করলে সতর্ক থাকতে হবে, কারণ infinite loop তৈরি হতে পারে।** 🚀
+
+----
+## Unmounting
+
+**🟢 Unmounting (কম্পোনেন্ট রিমুভ হওয়া) - React Lifecycle**  
+
+👉 **Unmounting** হলো **React Component Lifecycle-এর শেষ ধাপ, যেখানে component DOM থেকে মুছে যায়।**  
+👉 **React-এ built-in method:** `componentWillUnmount()`  
+👉 **এই method তখনই execute হয় যখন component UI থেকে remove হয়ে যায়।**  
+
+---
+
+### **🛠 Example: componentWillUnmount() Method in Action**
+```jsx
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: true };
+  }
+
+  delHeader = () => {
+    this.setState({ show: false });
+  };
+
+  render() {
+    let myheader;
+    if (this.state.show) {
+      myheader = <Child />;
+    }
+    return (
+      <div>
+        {myheader}
+        <button type="button" onClick={this.delHeader}>Delete Header</button>
+      </div>
+    );
+  }
+}
+
+class Child extends React.Component {
+  componentWillUnmount() {
+    alert("The component named Header is about to be unmounted.");
+  }
+
+  render() {
+    return <h1>Hello World!</h1>;
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Container />);
+```
+
+---
+
+### **🔹 এই কোডে যা ঘটছে:**  
+✅ **প্রথমে একটি "Hello World!" হেডার দেখানো হচ্ছে।**  
+✅ **যখন "Delete Header" বাটনে ক্লিক করা হবে, `Child` component DOM থেকে মুছে যাবে।**  
+✅ **`componentWillUnmount()` method execute হবে, এবং alert দেখাবে:**  
+   📢 *"The component named Header is about to be unmounted."*  
+
+---
+
+### **🔸 কেন `componentWillUnmount()` দরকার?**  
+1️⃣ **Memory leak রোধ করতে!** (যেমন: event listeners, timers, API calls বন্ধ করা)  
+2️⃣ **Cleanup operations করার জন্য।**  
+3️⃣ **Component remove হওয়ার আগে last-minute operations সম্পন্ন করার জন্য।**  
+
+---
+
+### **⚠️ Important Notes:**  
+🔹 **Functional component ব্যবহার করলে `useEffect()` এর cleanup function ব্যবহার করতে হয়:**  
+```jsx
+import { useState, useEffect } from "react";
+
+function Child() {
+  useEffect(() => {
+    return () => {
+      alert("The component named Header is about to be unmounted.");
+    };
+  }, []);
+
+  return <h1>Hello World!</h1>;
+}
+```
+👉 **এখানে return-এর ভেতরের function টা component unmount হওয়ার সময় execute হবে।**  
+
+---
