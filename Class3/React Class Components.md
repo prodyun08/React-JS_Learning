@@ -527,15 +527,19 @@ root.render(<Car />);
 📌 getSnapshotBeforeUpdate() হল React lifecycle method, যা component update হওয়ার ঠিক আগে চালানো হয়।
 
 ✅ **এই method-এর বৈশিষ্ট্য:**
+
 1️⃣ **Update হওয়ার আগের props এবং state-এর মান জানতে দেয়।**
+
 2️⃣ **এটি render() method-এর পর চলে এবং componentDidUpdate() method-এর আগেই execute হয়।**
+
 3️⃣ **একটি value return করতে পারে, যা componentDidUpdate() method-এ parameter হিসেবে পাঠানো হয়।**
+
 4️⃣ **যদি getSnapshotBeforeUpdate() ব্যবহার করেন, তবে অবশ্যই componentDidUpdate() method থাকতে হবে, নাহলে error আসবে।**
 
+
 *🚀 Example: Using getSnapshotBeforeUpdate() Method*
-jsx
-Copy
-Edit
+```jsx
+
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -575,13 +579,13 @@ class Car extends React.Component {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Car />);
-**📌 এখানে যা হচ্ছে:**
-**✅ প্রথমে "red" দেখাবে কারণ initial state সেট করা আছে।**
-**✅ ১ সেকেন্ড পর setState() দ্বারা color "yellow" হবে।**
-**✅ getSnapshotBeforeUpdate() method update হওয়ার আগের state দেখাবে।**
-**✅ componentDidUpdate() update হওয়ার পরের state দেখাবে।**
+```
 
-**⚠️ Tip:
-👉 এই method সাধারণত complex UI update tracking বা animation synchronizing-এর জন্য ব্যবহৃত হয়। 🚀**
+📌 **এখানে যা হচ্ছে:**  
+✅ **প্রথমে "red" দেখাবে কারণ initial state সেট করা আছে।**  
+✅ **১ সেকেন্ড পর setState() দ্বারা color "yellow" হবে।**  
+✅ **getSnapshotBeforeUpdate() method update হওয়ার আগের state দেখাবে।**  
+✅ **componentDidUpdate() update হওয়ার পরের state দেখাবে।**  
 
-
+⚠️ **Tip:**  
+👉 **এই method সাধারণত complex UI update tracking বা animation synchronizing-এর জন্য ব্যবহৃত হয়।** 🚀
