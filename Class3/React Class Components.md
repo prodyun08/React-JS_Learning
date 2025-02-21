@@ -301,8 +301,176 @@ root.render(<Car />);
 
 এখানে **state-এর মান `this.state.propertyname`** ব্যবহার করে দেখানো হয়েছে।
 
-
+----
 ## Changing the state Object
+
+স্টেট অবজেক্টের মান পরিবর্তন করতে this.setState() মেথড ব্যবহার করা হয়
+
+যখন state অবজেক্টের কোনো মান পরিবর্তিত হয়, তখন component পুনরায় render হয় এবং আউটপুট নতুন মান অনুযায়ী পরিবর্তিত হয়
+
+
+একটি **button** যোগ করো, যার **onClick event** থাকবে, যা **color property** পরিবর্তন করবে।  
+
+```jsx
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: "Ford",  // গাড়ির ব্র্যান্ড
+      model: "Mustang", // গাড়ির মডেল
+      color: "red", // গাড়ির রঙ
+      year: 1964 // গাড়ির বছর
+    };
+  }
+
+  // রঙ পরিবর্তনের জন্য ফাংশন (Function to change color)
+  changeColor = () => {
+    this.setState({color: "blue"}); // নতুন রঙ সেট করা হচ্ছে
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color} {this.state.model} from {this.state.year}.
+        </p>
+        {/* Change color বাটন */}
+        <button
+          type="button"
+          onClick={this.changeColor}
+        >Change color</button>
+      </div>
+    );
+  }
+}
+```
+
+🔹 এই **component**-এ যখন **Change color** বাটনে ক্লিক করা হবে, তখন **state পরিবর্তিত হবে**, এবং **UI নতুন color দেখাবে!** 🚀🔥
+
+**🔹 Always use `setState()` method** React এ **state পরিবর্তন করার জন্য সবসময় `setState()` method ব্যবহার করা উচিত।**  
+এটি নিশ্চিত করে যে **component বুঝতে পারবে যে state আপডেট হয়েছে**, এবং **`render()` method সহ অন্যান্য lifecycle methods** পুনরায় চলবে।  
+
+#### ⚡ **উদাহরণ (Example):**  
+```jsx
+this.setState({ color: "blue" }); // ✅ সঠিক পদ্ধতি  
+this.state.color = "blue"; // ❌ ভুল পদ্ধতি  
+```
+**❌ `this.state.color = "blue"` সরাসরি পরিবর্তন করলে React বুঝতে পারবে না, ফলে UI আপডেট হবে না।**  
+**✅ `setState()` ব্যবহার করলে React state পরিবর্তন বুঝতে পারবে এবং UI আপডেট করবে।** 🚀
+
+----
+
+## Lifecycle of Components
+
+React-এ প্রত্যেকটি component-এর একটি lifecycle থাকে, যা আমরা monitor এবং manipulate করতে পারি।
+
+এই lifecycle-এর তিনটি প্রধান ধাপ (Three Main Phases) আছে:
+1️⃣ Mounting (প্রাথমিক লোড হওয়া) - Component প্রথমবার DOM-এ যুক্ত হয়।
+2️⃣ Updating (আপডেট হওয়া) - State বা props পরিবর্তিত হলে Component রি-রেন্ডার হয়।
+3️⃣ Unmounting (সরিয়ে ফেলা) - Component DOM থেকে মুছে ফেলা হয়।
+
+
+## Mounting
+Mounting মানে Component-কে DOM-এ যুক্ত করা। যখন কোনো Component প্রথমবার DOM-এ আসে, তখন React চারটি built-in method sequentially execute করে।
+
+✅ Mounting-এর চারটি ধাপ:
+1️⃣ constructor() → Component-এর state এবং properties initialize করার জন্য।
+2️⃣ getDerivedStateFromProps() → Props থেকে নতুন state সেট করতে হলে এই method ব্যবহার করা হয়।
+3️⃣ render() → Component-এর UI (JSX) রেন্ডার করার জন্য।
+4️⃣ componentDidMount() → Component DOM-এ যুক্ত হওয়ার পর একবারই execute হয়। API calls বা DOM manipulation এখানে করা হয়।
+
+⚠️ render() method বাধ্যতামূলক, অন্যগুলো অপশনাল।
+
+----
+## constructor
+
+🔸 **constructor() method** হল প্রথম method যা React component তৈরি হওয়ার সময় **সবচেয়ে আগে execute হয়**। এটি মূলত **initial state এবং initial values সেট করার জন্য** ব্যবহৃত হয়।  
+
+✅ **constructor() method-এর গুরুত্বপূর্ণ বৈশিষ্ট্য:**  
+1️⃣ **Component তৈরি হওয়ার সাথে সাথেই call হয়।**  
+2️⃣ **State ও props initialize করার জন্য ব্যবহার করা হয়।**  
+3️⃣ **super(props) ব্যবহার করা বাধ্যতামূলক,** কারণ এটি parent class (React.Component)-এর constructor inherit করতে সাহায্য করে।  
+4️⃣ **Direct state assignment (this.state = {...}) শুধুমাত্র constructor-এর ভেতরেই করা যায়।**  
+
+
+### **🚀 Example: Using constructor()**
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props); // Always call super(props) first
+    this.state = { brand: "Ford", color: "red" }; // Initial state
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>My Car Brand: {this.state.brand}</h1>
+        <p>Color: {this.state.color}</p>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Car />);
+```
+📌 **এখানে,** আমরা **constructor() method-এ state সেট করেছি, এবং render() method-এ সেই state UI-তে দেখাচ্ছি।**  
+
+⚠️ **Tip:** যদি state বা props ব্যবহার না করতে হয়, তাহলে **constructor() method না দিলেও Component কাজ করবে!** 🚀
+
+----
+## getDerivedStateFromProps
+
+
+📌 **getDerivedStateFromProps() method** হলো একটি **static lifecycle method** যা **render() method-এর ঠিক আগে call হয়।** এটি props অনুযায়ী state update করার জন্য ব্যবহৃত হয়।  
+
+✅ **এই method-এর গুরুত্বপূর্ণ বৈশিষ্ট্য:**  
+1️⃣ **render() method-এর আগে call হয়।**  
+2️⃣ **Props অনুযায়ী state update করতে ব্যবহৃত হয়।**  
+3️⃣ **এটি static হওয়ায়, this ব্যবহার করা যায় না।**  
+4️⃣ **Method টি সরাসরি state update করতে পারে না, বরং একটি নতুন state object return করে।**  
+
+
+
+### **🚀 Example: Using getDerivedStateFromProps()**
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { favoriteColor: "red" };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return { favoriteColor: props.favcol }; // Update state based on props
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Car Color is {this.state.favoriteColor}</h1>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Car favcol="blue" />);
+```
+
+
+✅ **constructor() method প্রথমে favoriteColor = "red" সেট করে।**  
+✅ **getDerivedStateFromProps() method props থেকে নতুন color ("blue") সেট করে।**  
+✅ **render() method updated state দেখায়।**  
+
+⚠️ **Tip:**  
+👉 যদি এই method থেকে `null` return করা হয়, তাহলে state পরিবর্তন হবে না। 🚀
 
 
 
