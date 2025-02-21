@@ -53,31 +53,36 @@ const root = ReactDOM.createRoot(container);
 root.render(<Car />);
 ```
 
-## Component Constructor
-If there is a `constructor()` function in your component, this function will be called when the component gets initiated.
+## **Component Constructor**  
+যদি তোমার কম্পোনেন্টে একটি **`constructor()`** function থাকে, তাহলে এটি কম্পোনেন্ট **initialize** হওয়ার সময় **call** হবে।  
 
-The constructor function is where you initiate the component's properties.
+🔹 **Constructor** ফাংশনের কাজ:  
+- কম্পোনেন্টের **properties** initialize করা।  
+- **React**-এ কম্পোনেন্টের **properties** একটি **state** অবজেক্টের মধ্যে রাখা হয়।  
+- **`super()`** ব্যবহার করে parent component (**React.Component**) এর **constructor** call করতে হয়, যাতে কম্পোনেন্ট **parent component-এর functions** অ্যাক্সেস করতে পারে।  
 
-In React, component properties should be kept in an object called `state`.
+---
 
-You will learn more about `state` later in this tutorial.
+### **Car Component এ Constructor Function যোগ করা:**  
 
-The constructor function is also where you honor the inheritance of the parent component by including the `super()` statement, which executes the parent component's constructor function, and your component has access to all the functions of the parent component `(React.Component)`.
-
-
-*Create a constructor function in the Car component, and add a color property:*
-```js
+```jsx
 class Car extends React.Component {
   constructor() {
     super();
-    this.state = {color: "red"};
+    this.state = { color: "red" };
   }
   render() {
     return <h2>I am a Car!</h2>;
   }
 }
 ```
-*Use the color property in the render() function:*
+
+এখানে **`this.state = { color: "red" }`** দ্বারা **state** তৈরি করা হয়েছে, যেখানে **color** property এর মান `"red"`।
+
+---
+
+### **State এর মান render() ফাংশনে ব্যবহার করা:**  
+
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -85,7 +90,7 @@ import ReactDOM from 'react-dom/client';
 class Car extends React.Component {
   constructor() {
     super();
-    this.state = {color: "red"};
+    this.state = { color: "red" };
   }
   render() {
     return <h2>I am a {this.state.color} Car!</h2>;
@@ -95,6 +100,11 @@ class Car extends React.Component {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Car />);
 ```
+
+🔹 **এই কোডের আউটপুট হবে:**  
+✅ **"I am a red Car!"**  
+
+এখানে **`this.state.color`** ব্যবহার করে **state** থেকে **color** মানটি নেওয়া হয়েছে এবং **render()** ফাংশনের মধ্যে **return** করা হয়েছে। 🚗
 
 ## Props
 
