@@ -106,17 +106,11 @@ root.render(<Car />);
 
 এখানে **`this.state.color`** ব্যবহার করে **state** থেকে **color** মানটি নেওয়া হয়েছে এবং **render()** ফাংশনের মধ্যে **return** করা হয়েছে। 🚗
 
-## Props
+## **Props (প্রপস)**
+**Props** হল **component properties** হ্যান্ডেল করার আরেকটি উপায়।  
+Props হল **function arguments**-এর মতো, যা **attributes** হিসাবে **component**-এ পাঠানো হয়।
 
-Another way of handling component properties is by using `props`.
-
-Props are like function arguments, and you send them into the component as attributes.
-
-You will learn more about `props` in the next chapter.
-
-
-*Use an attribute to pass a color to the Car component, and use it in the render() function:*
-
+**Example:**  
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -127,15 +121,17 @@ class Car extends React.Component {
   }
 }
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Car color="red"/>);
 ```
+এখানে `color="red"` **props** হিসাবে **Car component**-এ পাঠানো হয়েছে।
 
-## Props in the Constructor
-If your component has a constructor function, the props should always be passed to the constructor and also to the React.Component via the `super()` method.
+---
 
-##### Example 
+## **Props in the Constructor (Constructor এ Props ব্যবহার)**
+যদি কম্পোনেন্টে **constructor function** থাকে, তাহলে **props** অবশ্যই **constructor()**-এ **pass** করতে হবে এবং **super(props)** ব্যবহার করতে হবে।
+
+**Example:**  
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -152,12 +148,14 @@ class Car extends React.Component {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Car model="Mustang"/>);
 ```
-## Components in Components
+এখানে `model="Mustang"` props হিসাবে পাঠানো হয়েছে এবং `this.props.model` দ্বারা **render()** মেথডে ব্যবহার করা হয়েছে।
 
-We can refer to components inside other components:
+---
 
-*Use the Car component inside the Garage component:*
+## **Components in Components (এক কম্পোনেন্টের ভেতর আরেকটি কম্পোনেন্ট)**
+React-এ আমরা **একটি কম্পোনেন্টের ভিতরে অন্য কম্পোনেন্ট ব্যবহার** করতে পারি।
 
+### **Example:**  
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -172,8 +170,8 @@ class Garage extends React.Component {
   render() {
     return (
       <div>
-      <h1>Who lives in my Garage?</h1>
-      <Car />
+        <h1>Who lives in my Garage?</h1>
+        <Car />
       </div>
     );
   }
@@ -182,18 +180,15 @@ class Garage extends React.Component {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Garage />);
 ```
+এখানে **Garage** কম্পোনেন্টের মধ্যে **Car** কম্পোনেন্টকে **use** করা হয়েছে।
 
-## Components in Files
+---
 
-React is all about re-using code, and it can be smart to insert some of your components in separate files.
+## **Components in Files (কম্পোনেন্ট আলাদা ফাইলে রাখা)**
+React-এ কোড **re-use** করার জন্য, আমরা কম্পোনেন্টগুলো **অন্য ফাইলে সংরক্ষণ** করতে পারি।
 
-To do that, create a new file with a `.js` file extension and put the code inside it:
-
-Note that the file must start by importing React (as before), and it has to end with the statement `export default Car;`.
-
-*This is the new file, we named it Car.js:*
-
-```js
+### **Step 1: `Car.js` ফাইল তৈরি করুন**
+```jsx
 import React from 'react';
 
 class Car extends React.Component {
@@ -204,38 +199,33 @@ class Car extends React.Component {
 
 export default Car;
 ```
-To be able to use the `Car` component, you have to import the file in your application.
+এখানে **`export default Car;`** দ্বারা **Car component** অন্য ফাইলে **import** করা যাবে।
 
-*Now we import the `Car.js` file in the application, and we can use the `Car` component as if it was created here.*
-
+### **Step 2: `App.js` বা প্রধান ফাইলে `Car.js` ইমপোর্ট করা**
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Car from './Car.js';
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Car />);
 ```
-## React Class Component State
-React Class components have a built-in `state` object.
+এতে **Car.js**-এ তৈরি কম্পোনেন্ট **import** করে ব্যবহার করা হয়েছে।
 
-You might have noticed that we used `state` earlier in the component constructor section.
+---
 
-The `state` object is where you store property values that belongs to the component.
+## **React Class Component State (State কীভাবে কাজ করে)**
+React **Class Component**-এ একটি **built-in state object** থাকে, যেখানে কম্পোনেন্টের ডেটা সংরক্ষণ করা হয়।  
+যখন **state পরিবর্তন হয়**, তখন কম্পোনেন্ট **re-render** হয়।
 
-When the `state` object changes, the component re-renders.
+---
 
-## Creating the state Object
-The state object is initialized in the constructor:
-
-*Specify the state object in the constructor method:*
-
-```js
+### **Creating the state Object (State তৈরি করা)**
+```jsx
 class Car extends React.Component {
   constructor(props) {
     super(props);
-  this.state = {brand: "Ford"};
+    this.state = { brand: "Ford" };
   }
   render() {
     return (
@@ -246,10 +236,12 @@ class Car extends React.Component {
   }
 }
 ```
-The state object can contain as many properties as you like:
+এখানে **state object**-এ `"brand": "Ford"` সংরক্ষণ করা হয়েছে।
 
-*Specify all the properties your component need:*
-```js
+---
+
+### **Multiple Properties in State (State-এ একাধিক মান রাখা)**
+```jsx
 class Car extends React.Component {
   constructor(props) {
     super(props);
@@ -269,10 +261,11 @@ class Car extends React.Component {
   }
 }
 ```
-## Using the `state` Object
-Refer to the `state` object anywhere in the component by using the `this.state.propertyname` syntax:
+এখানে **state**-এ **brand, model, color, year** সংরক্ষণ করা হয়েছে।
 
-*Refer to the `state` object in the `render()` method:*
+---
+
+### **Using the State Object (State-কে UI-তে দেখানো)**
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -292,19 +285,23 @@ class Car extends React.Component {
       <div>
         <h1>My {this.state.brand}</h1>
         <p>
-          It is a {this.state.color}
-          {this.state.model}
-          from {this.state.year}.
+          It is a {this.state.color} {this.state.model} from {this.state.year}.
         </p>
       </div>
     );
   }
 }
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Car />);
 ```
+🔹 **Output:**  
+✅ `My Ford`  
+✅ `It is a red Mustang from 1964.`  
+
+এখানে **state-এর মান `this.state.propertyname`** ব্যবহার করে দেখানো হয়েছে।
+
+
 ## Changing the state Object
 
 
