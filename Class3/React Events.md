@@ -36,7 +36,6 @@ onClick={shoot}  instead of onclick="shoot()".
 <button onclick="shoot()">Take the Shot!</button>
 ```
 #### Example 
-Put the shoot function inside the Football component:
 
 *চলো Football component এর মধ্যে shoot function put করা যাক :*
 ```jsx
@@ -59,3 +58,53 @@ root.render(<Football />);
 
 ✅ **যখন Take the shot Button এ click করব alert function work করবে এবং popup এ Great Shot! message show করবে।**
 
+## Passing Arguments
+event handler এর মধ্যে argument pass করা হোক arrow function ব্যবহার করে। 
+#### Example:
+Send "Goal!" as a parameter to the shoot function, using arrow function:
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function Football() {
+  const shoot = (a) => {
+    alert(a);
+  }
+
+  return (
+    <button onClick={() => shoot("Goal!")}>Take the shot!</button>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Football />);
+```
+
+## React Event Object
+Event handlers have access to the React event that triggered the function.
+
+In our example the event is the "click" event.
+
+#### Example:
+Arrow Function: Sending the event object manually:
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function Football() {
+  const shoot = (a, b) => {
+    alert(b.type);
+		/*
+		'b' represents the React event that triggered the function.
+    In this case, the 'click' event
+		*/
+  }
+
+  return (
+    <button onClick={(event) => shoot("Goal!", event)}>Take the shot!</button>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Football />);
+```
