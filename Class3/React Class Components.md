@@ -2,26 +2,32 @@
 
 
 ## React Components
-Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML via a `render()` function.
 
-Components come in two types, **Class components** and **Function components**, in this chapter you will learn about Class components.
+কম্পোনেন্ট হল independent এবং reusable কোডের ছোট ছোট অংশ। এগুলি JavaScript functions এর মতো কাজ করে, কিন্তু আলাদাভাবে execute হয় এবং `render()` function এর মাধ্যমে HTML return করে।
+
+Components দুই ধরনের হয়: **Class Components** এবং **Function Components**। এই চ্যাপ্টারে তুমি **Class Components** সম্পর্কে শিখবে।
 
 ## Create a Class Component
-When creating a React component, the component's name must start with an upper case letter.
+React কম্পোনেন্ট তৈরি করার সময়, কম্পোনেন্টের নাম অবশ্যই একটি **uppercase** letter দিয়ে শুরু হতে হবে।
 
-The component has to include the `extends React.Component` statement, this statement creates an inheritance to React.Component, and gives your component access to React.Component's functions.
+কম্পোনেন্টটিতে অবশ্যই `extends React.Component` স্টেটমেন্ট থাকতে হবে। এই স্টেটমেন্টটি **React.Component** এর inheritance তৈরি করে এবং কম্পোনেন্টকে **React.Component** এর ফাংশনগুলোর অ্যাক্সেস দেয়।
 
-The component also requires a `render()` method, this method returns HTML.
-
+কম্পোনেন্টের একটি **`render()`** method থাকতে হবে, যা HTML return করে।
 
 
 *Create a Class component called Car*
+
 ```js
+// এই Class Component টি Car নামে তৈরি করা হয়েছে, যা React.Component কে extend করেছে।
+
 class Car extends React.Component {
   render() {
     return <h2>Hi, I am a Car!</h2>;
   }
 }
+
+🔹 render() method টি HTML return করে, যা এখানে <h2> ট্যাগের মধ্যে "Hi, I am a Car!" দেখাবে।
+
 ```
 
 Now your React application has a component called Car, which returns a `<h2>` element.
