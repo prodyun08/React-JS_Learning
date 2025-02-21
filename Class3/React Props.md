@@ -123,8 +123,7 @@ root.render(<Garage />);
 **Or if it was an object:**
 
 একটি object carInfo তৈরি করুন এবং এটি Car component-এ props হিসেবে পাঠান:
-```
-jsx
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
