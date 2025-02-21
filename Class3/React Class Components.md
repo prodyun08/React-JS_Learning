@@ -472,6 +472,116 @@ root.render(<Car favcol="blue" />);
 ⚠️ **Tip:**  
 👉 যদি এই method থেকে `null` return করা হয়, তাহলে state পরিবর্তন হবে না। 🚀
 
+---
+## Render
 
+📌 **render() method** হল React-এর একটি **অবশ্যকীয় lifecycle method**, যা **component update হলে আবার call হয়।** এটি **JSX return করে**, যা ব্রাউজারের DOM-এ render হয়।  
+
+✅ **এই method-এর গুরুত্বপূর্ণ বৈশিষ্ট্য:**  
+1️⃣ **Component প্রথমবার load হলে render() execute হয়।**  
+2️⃣ **State বা props পরিবর্তন হলে এটি পুনরায় call হয়।**  
+3️⃣ **এটি JSX return করতে হবে, যা DOM-এ render হবে।**  
+4️⃣ **এটি শুধুমাত্র UI update করার জন্য ব্যবহৃত হয়, সরাসরি state পরিবর্তন করতে পারে না।**  
+
+---
+
+### **🚀 Example: Using render() Method**
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { favoriteColor: "red" };
+  }
+
+  changeColor = () => {
+    this.setState({ favoriteColor: "blue" });
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Car Color is {this.state.favoriteColor}</h1>
+        <button onClick={this.changeColor}>Change Color</button>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Car />);
+```
+
+✅ **প্রথমে render() method চালিয়ে "red" দেখাবে।**  
+✅ **Button-এ ক্লিক করলে `setState()` ব্যবহার করে color পরিবর্তন হবে।**  
+✅ **State পরিবর্তন হওয়ার কারণে render() পুনরায় call হবে, এবং "blue" দেখাবে।**  
+
+⚠️ **Tip:**  
+👉 **render() method শুধুমাত্র UI update করে, এটি সরাসরি state modify করতে পারে না।** 🚀
+
+---
+
+## getSnapshotBeforeUpdate
+📌 getSnapshotBeforeUpdate() হল React lifecycle method, যা component update হওয়ার ঠিক আগে চালানো হয়।
+
+✅ **এই method-এর বৈশিষ্ট্য:**
+1️⃣ **Update হওয়ার আগের props এবং state-এর মান জানতে দেয়।**
+2️⃣ **এটি render() method-এর পর চলে এবং componentDidUpdate() method-এর আগেই execute হয়।**
+3️⃣ **একটি value return করতে পারে, যা componentDidUpdate() method-এ parameter হিসেবে পাঠানো হয়।**
+4️⃣ **যদি getSnapshotBeforeUpdate() ব্যবহার করেন, তবে অবশ্যই componentDidUpdate() method থাকতে হবে, নাহলে error আসবে।**
+
+*🚀 Example: Using getSnapshotBeforeUpdate() Method*
+jsx
+Copy
+Edit
+import React from "react";
+import ReactDOM from "react-dom";
+
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { favoriteColor: "red" };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ favoriteColor: "yellow" });
+    }, 1000);
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById("div1").innerHTML =
+      "Before update: " + prevState.favoriteColor;
+    return prevState.favoriteColor;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    document.getElementById("div2").innerHTML =
+      "After update: " + this.state.favoriteColor;
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Color is {this.state.favoriteColor}</h1>
+        <div id="div1"></div>
+        <div id="div2"></div>
+      </div>
+    );
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Car />);
+**📌 এখানে যা হচ্ছে:**
+**✅ প্রথমে "red" দেখাবে কারণ initial state সেট করা আছে।**
+**✅ ১ সেকেন্ড পর setState() দ্বারা color "yellow" হবে।**
+**✅ getSnapshotBeforeUpdate() method update হওয়ার আগের state দেখাবে।**
+**✅ componentDidUpdate() update হওয়ার পরের state দেখাবে।**
+
+**⚠️ Tip:
+👉 এই method সাধারণত complex UI update tracking বা animation synchronizing-এর জন্য ব্যবহৃত হয়। 🚀**
 
 
