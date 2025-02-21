@@ -66,3 +66,6 @@ function Garage() {
 }
 ```
 ✅ **Props `carInfo` নামে object আকারে পাঠানো হয়েছে এবং `Car` Component-এ ব্যবহার করা হয়েছে।**  
+
+
+## Pass Data
