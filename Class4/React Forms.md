@@ -105,3 +105,89 @@ root.render(<MyForm />);
 ✔ **`onChange={(e) => setName(e.target.value)}`** → ইউজার যখন ইনপুট টাইপ করে, state আপডেট হয়।  
 
 📌 **React Hooks সম্পর্কে আরও জানতে, React Hooks সেকশন দেখো!** 😊
+
+### 🚀 Handling Multiple Input Fields in React (একাধিক ইনপুট ফিল্ড হ্যান্ডলিং)  
+
+React-এ **একাধিক ইনপুট ফিল্ড ম্যানেজ করা যায়** `name` অ্যাট্রিবিউট এবং **state object** ব্যবহার করে।  
+
+---
+
+### 🎯 Key Concepts (মূল বিষয়সমূহ)  
+
+✅ **`useState({})`** → প্রথমে state-কে খালি অবজেক্ট `{}` হিসাবে সেট করা হয়।  
+✅ **`name` attribute** → প্রতিটি ইনপুট ফিল্ডের `name` অ্যাট্রিবিউট সেট করতে হয়।  
+✅ **`event.target.name` এবং `event.target.value`** → ইউজারের ইনপুট সংগ্রহ করতে ব্যবহৃত হয়।  
+✅ **Bracket Notation `[name]: value`** → State আপডেট করতে `[]` ব্র্যাকেট ব্যবহার করা হয়।  
+
+---
+
+### 📌 Example: React Form with Multiple Input Fields  
+
+```jsx
+import { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+
+function MyForm() {
+  const [inputs, setInputs] = useState({}); // Initial empty state
+
+  const handleChange = (event) => {
+    const name = event.target.name; // Get input name
+    const value = event.target.value; // Get input value
+    setInputs(values => ({ ...values, [name]: value })); // Update state dynamically
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent page refresh
+    alert(`Name: ${inputs.username}, Age: ${inputs.age}`); // Show submitted data
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+        <input 
+          type="text" 
+          name="username" 
+          value={inputs.username || ""} 
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>Enter your age:
+        <input 
+          type="number" 
+          name="age" 
+          value={inputs.age || ""} 
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <input type="submit" value="Submit" /> {/* Submit Button */}
+    </form>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<MyForm />);
+```
+
+---
+
+### 🔍 Code Explanation (কোড ব্যাখ্যা)  
+
+✔ **`useState({})`** → `inputs` নামে একটি অবজেক্ট state তৈরি করা হয়েছে।  
+✔ **`name` attribute** → `username` এবং `age` ইনপুট ফিল্ডের জন্য আলাদা `name` দেওয়া হয়েছে।  
+✔ **`onChange={handleChange}`** → প্রতিটি ইনপুটের মান পরিবর্তন হলে `handleChange` ফাংশন কল হয়।  
+✔ **`setInputs(values => ({ ...values, [name]: value }))`** → পুরোনো state রেখে নতুন ইনপুট যোগ করা হয়।  
+✔ **`onSubmit={handleSubmit}`** → ফর্ম সাবমিট হলে `handleSubmit` ফাংশন কল হয়।  
+✔ **`alert("Name: " + inputs.username + ", Age: " + inputs.age)`** → ইউজারের ইনপুট অ্যালার্ট বক্সে দেখাবে।  
+
+---
+
+### 🎯 Summary (সংক্ষেপে)  
+
+✅ **React-এ একাধিক ইনপুট ফিল্ড ম্যানেজ করতে `name` attribute ব্যবহার করতে হয়।**  
+✅ **State আপডেটের জন্য `[]` ব্র্যাকেট নোটেশন ব্যবহার করতে হয়।**  
+✅ **`onChange` ইভেন্ট ইউজারের ইনপুট আপডেট করতে ব্যবহৃত হয়।**  
+✅ **React-এ `onSubmit` ইভেন্ট হ্যান্ডলার ব্যবহার করে ফর্ম সাবমিট করা যায়।**  
+
+📌 **এখন তুমি React-এ একাধিক ইনপুট ফিল্ড সহজেই ম্যানেজ করতে পারবে! 🚀**
